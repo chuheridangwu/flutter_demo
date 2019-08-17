@@ -11,25 +11,32 @@ class LayoutDemo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center, //主轴, 有多个对齐方式
         // crossAxisAlignment: CrossAxisAlignment.center,  // 交叉轴方式
         children: <Widget>[
-          AspectRatioDemo()
+          ConstrainedBox(
+            constraints: BoxConstraints(minHeight: 200.0, maxWidth: 200.0),
+            child: Container(
+              color: Colors.indigoAccent,
+            ),
+          )
         ],
       ),
     );
   }
 }
 
+// 宽高比widget  AspectRatio
 class AspectRatioDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-            aspectRatio: 16.0/9.0,  // 宽高比
-            child: Container(
-              color: Color.fromRGBO(3, 54, 255, 1.0),
-            ),
-          );
+      aspectRatio: 16.0 / 9.0, // 宽高比
+      child: Container(
+        color: Color.fromRGBO(3, 54, 255, 1.0),
+      ),
+    );
   }
 }
 
+// 层叠的widget
 class StackDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
