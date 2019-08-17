@@ -11,49 +11,77 @@ class LayoutDemo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center, //主轴, 有多个对齐方式
         // crossAxisAlignment: CrossAxisAlignment.center,  // 交叉轴方式
         children: <Widget>[
-          Stack(
-            alignment: Alignment.topLeft,
-            children: <Widget>[
-              SizedBox(
-                width: 200.0,
-                height: 300.0,
-                child: Container(
-                  alignment: Alignment(0.9, -0.9), // 子widget在父widget中的位置
-                  child: Icon(Icons.ac_unit, color: Colors.white,),
-                  decoration: BoxDecoration(
-                      color: Color.fromRGBO(3, 53, 255, 1.0),
-                      borderRadius: BorderRadius.circular(2.0),),
-                    
-                ),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              SizedBox(
-                width: 100.0,
-                height: 100.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(3, 54, 255, 1.0),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(Icons.brightness_2, color: Colors.white, size: 32.0),
-                ),
-              ),
-              Positioned(
-                child: Icon(Icons.ac_unit, color: Colors.white,),
-                top: 35,
-                right: 30,
-              ),
-               Positioned(
-                child: Icon(Icons.ac_unit, color: Colors.white,),
-                top: 165,
-                right: 22,
-              ),
-            ],
-          )
+          AspectRatioDemo()
         ],
       ),
+    );
+  }
+}
+
+class AspectRatioDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+            aspectRatio: 16.0/9.0,  // 宽高比
+            child: Container(
+              color: Color.fromRGBO(3, 54, 255, 1.0),
+            ),
+          );
+  }
+}
+
+class StackDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.topLeft,
+      children: <Widget>[
+        SizedBox(
+          width: 200.0,
+          height: 300.0,
+          child: Container(
+            alignment: Alignment(0.9, -0.9), // 子widget在父widget中的位置
+            child: Icon(
+              Icons.ac_unit,
+              color: Colors.white,
+            ),
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(3, 53, 255, 1.0),
+              borderRadius: BorderRadius.circular(2.0),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 10.0,
+        ),
+        SizedBox(
+          width: 100.0,
+          height: 100.0,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(3, 54, 255, 1.0),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(Icons.brightness_2, color: Colors.white, size: 32.0),
+          ),
+        ),
+        Positioned(
+          child: Icon(
+            Icons.ac_unit,
+            color: Colors.white,
+          ),
+          top: 35,
+          right: 30,
+        ),
+        Positioned(
+          child: Icon(
+            Icons.ac_unit,
+            color: Colors.white,
+          ),
+          top: 165,
+          right: 22,
+        ),
+      ],
     );
   }
 }
