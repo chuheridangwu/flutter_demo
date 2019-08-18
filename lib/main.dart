@@ -19,7 +19,7 @@ class App extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/about': (context) => Page(title: 'About',),
-          '/' :(context) => NavigatorDemo(),
+          '/' :(context) => Home(),
         },
         theme: ThemeData(
           // 主题
