@@ -44,7 +44,7 @@ class BasicDemo extends StatelessWidget {
                     )
                   ],
                   shape: BoxShape.circle, //形状，有长方形 圆形 不知道为什么设置之后不显示图像
-                  // gradient: RadialGradient(// 镜像渐变效果
+                  // gradient: RadialGradient(// 聚集渐变效果
                   //     colors: [
                   //   Color.fromRGBO(7, 102, 255, 1.0),
                   //   Color.fromRGBO(3, 28, 128, 1.0),
