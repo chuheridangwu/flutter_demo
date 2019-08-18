@@ -14,7 +14,7 @@ class FromDemo extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextFleldDemo(),
+              RegisterFrom(),
             ],
           ),
         ),
@@ -23,6 +23,48 @@ class FromDemo extends StatelessWidget {
   }
 }
 
+
+class RegisterFrom extends StatefulWidget {
+  @override
+  _RegisterFromState createState() => _RegisterFromState();
+}
+
+class _RegisterFromState extends State<RegisterFrom> {
+  @override
+  Widget build(BuildContext context) {
+    return Form( // 表单，提供校验的功能
+        child: Column(
+          children: <Widget>[
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'userName',
+              ),
+            ),
+            TextFormField(
+              obscureText: true, //不显示文字，显示点
+              decoration: InputDecoration(
+                labelText: 'Password',
+              ),
+            ),
+            SizedBox(height: 22.0,),
+            Container(
+              width: double.infinity, //最大宽度
+              child: RaisedButton(
+                color: Theme.of(context).accentColor,
+                child: Text('Regiser',style:TextStyle(color: Colors.white)),
+                elevation: 0.0,
+                onPressed: (){
+
+                },
+              ),
+            )
+          ],
+        ),
+    );
+  }
+}
+
+// TextField的基本使用方法
 class TextFleldDemo extends StatefulWidget {
   @override
   _TextFleldDemoState createState() => _TextFleldDemoState();
@@ -35,7 +77,7 @@ class _TextFleldDemoState extends State<TextFleldDemo> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // textEditingController.text = '~hi'; // 设置初始化文字
+    textEditingController.text = '~hi'; // 设置初始化文字
     textEditingController.addListener(() {
       debugPrint('inut: ${textEditingController.text}');
     });
