@@ -33,11 +33,18 @@ class _RegisterFromState extends State<RegisterFrom> {
 
 final registerFormKey = GlobalKey<FormState>();
 String username,password;
+bool autovalidate = false; //初始化的时候不自动验证
 
 void submitRegisterForm(){
-  registerFormKey.currentState.save(); //保存文字，会调用onSaved方法
-  registerFormKey.currentState.validate(); // 校验文本框文字
-
+  // registerFormKey.currentState.validate(); // 校验文本框文字
+  // 如果校验失败，再开启自动验证功能
+  if (registerFormKey.currentState.validate()) {
+      registerFormKey.currentState.save(); //保存文字，会调用onSaved方法
+  }else{
+    setState(() {
+      autovalidate = true;
+    });
+  }
 }
 
 String validateUsername(String value){
@@ -69,6 +76,7 @@ String validatePassword(String value){
                 username = value;
               },
               validator: validateUsername, //是否检验文字，输出错误信息
+              autovalidate: autovalidate, //表单的自动验证功能
             ),
             TextFormField(
               obscureText: true, //不显示文字，显示点
@@ -80,6 +88,7 @@ String validatePassword(String value){
                 password = value;
               },
               validator: validatePassword,
+              autovalidate: autovalidate,
             ),
             SizedBox(height: 22.0,),
             Container(
