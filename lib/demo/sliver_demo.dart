@@ -12,8 +12,8 @@ class SliverDemo extends StatelessWidget {
             // pinned: true, //固定在顶部
             floating: true, //如果向下滚动，跟随滚动，向上滚动，直接显示
             expandedHeight: 178.0, // 伸展高度
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text('Flutter demo'),
+            flexibleSpace: FlexibleSpaceBar( // 弹性空间
+              title: Text('Flutter demo'.toUpperCase()),
               background: Image.network(
                 posts[0].imageUrl,
                 fit: BoxFit.cover,
