@@ -4,11 +4,38 @@ import 'package:flutter_demo/model/post.dart';
 class ViewDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GridViewExtentDemo();
+    return GridViewBuilderDemo();
+  }
+}
+// GridView.builder 的基础用法
+class GridViewBuilderDemo extends StatelessWidget {
+
+Widget _gridItemBuilder(BuildContext context,int index){
+  return Container(
+    child: Image.network(posts[index].imageUrl,fit: BoxFit.cover,),
+  );
+}
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      itemCount: posts.length,
+      itemBuilder: _gridItemBuilder,
+      // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( //相当于count 设置间距
+      //   crossAxisCount: 2,
+      //   crossAxisSpacing: 10.0,
+      //   mainAxisSpacing: 10.0
+      // ),
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent( //相当于extent设置间距
+        maxCrossAxisExtent: 200.0,
+        crossAxisSpacing: 10.0,
+        mainAxisSpacing: 10.0
+      ),
+    );
   }
 }
 
-// GridView.count 的基础用法
+// GridView.extent 的基础用法
 class GridViewExtentDemo extends StatelessWidget {
   List<Widget> _buildTiles(length) {
     return List.generate(length, (index) {
