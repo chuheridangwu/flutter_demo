@@ -30,21 +30,32 @@ class RegisterFrom extends StatefulWidget {
 }
 
 class _RegisterFromState extends State<RegisterFrom> {
+
+final registerFormKey = GlobalKey<FormState>();
+String username,password;
+
   @override
   Widget build(BuildContext context) {
     return Form( // 表单，提供校验的功能
+    key: registerFormKey,
         child: Column(
           children: <Widget>[
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'userName',
               ),
+              onSaved: (value){
+                username = value;
+              },
             ),
             TextFormField(
               obscureText: true, //不显示文字，显示点
               decoration: InputDecoration(
                 labelText: 'Password',
               ),
+              onSaved: (value){
+                password = value;
+              },
             ),
             SizedBox(height: 22.0,),
             Container(
