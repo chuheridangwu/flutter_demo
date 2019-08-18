@@ -40,6 +40,11 @@ void submitRegisterForm(){
   // 如果校验失败，再开启自动验证功能
   if (registerFormKey.currentState.validate()) {
       registerFormKey.currentState.save(); //保存文字，会调用onSaved方法
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text('registering...'),
+        )
+      );
   }else{
     setState(() {
       autovalidate = true;
