@@ -34,6 +34,26 @@ class _RegisterFromState extends State<RegisterFrom> {
 final registerFormKey = GlobalKey<FormState>();
 String username,password;
 
+void submitRegisterForm(){
+  registerFormKey.currentState.save(); //保存文字，会调用onSaved方法
+  registerFormKey.currentState.validate(); // 校验文本框文字
+
+}
+
+String validateUsername(String value){
+  if (value.isEmpty) {
+    return 'username is required';
+  }
+  return null;
+}
+
+String validatePassword(String value){
+  if (value.isEmpty) {
+    return 'password is required';
+  }
+  return null;
+}
+
   @override
   Widget build(BuildContext context) {
     return Form( // 表单，提供校验的功能
@@ -43,19 +63,23 @@ String username,password;
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'userName',
+                helperText: '', //错误信息
               ),
               onSaved: (value){
                 username = value;
               },
+              validator: validateUsername, //是否检验文字，输出错误信息
             ),
             TextFormField(
               obscureText: true, //不显示文字，显示点
               decoration: InputDecoration(
                 labelText: 'Password',
+                helperText: '', //错误信息
               ),
               onSaved: (value){
                 password = value;
               },
+              validator: validatePassword,
             ),
             SizedBox(height: 22.0,),
             Container(
@@ -64,9 +88,7 @@ String username,password;
                 color: Theme.of(context).accentColor,
                 child: Text('Regiser',style:TextStyle(color: Colors.white)),
                 elevation: 0.0,
-                onPressed: (){
-
-                },
+                onPressed: submitRegisterForm,
               ),
             )
           ],
