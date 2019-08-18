@@ -7,7 +7,21 @@ class SliverDemo extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverSafeArea( // widget显示在安全区域内
+          SliverAppBar(
+            // title: Text('你好'),
+            // pinned: true, //固定在顶部
+            floating: true, //如果向下滚动，跟随滚动，向上滚动，直接显示
+            expandedHeight: 178.0, // 伸展高度
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text('Flutter demo'),
+              background: Image.network(
+                posts[0].imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SliverSafeArea(
+            // widget显示在安全区域内
             sliver: SliverPadding(
               padding: EdgeInsets.all(8.0),
               sliver: SliverGridDemo(),
