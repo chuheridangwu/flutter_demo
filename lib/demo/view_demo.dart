@@ -2,17 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/model/post.dart';
 
 class ViewDemo extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
-    return GridViewCountDemo();
+    return GridViewExtentDemo();
+  }
+}
+
+// GridView.count 的基础用法
+class GridViewExtentDemo extends StatelessWidget {
+  List<Widget> _buildTiles(length) {
+    return List.generate(length, (index) {
+      // 生成一个数组
+      return Container(
+        color: Colors.grey[200],
+        alignment: Alignment(0.0, 0.0),
+        child: Text('item$index'),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.extent(//如果是垂直滚动，主轴就是竖着的轴，需要给出交叉轴的数量
+      maxCrossAxisExtent: 150, //交叉轴最大的宽度
+      crossAxisSpacing: 10.0,
+      mainAxisSpacing: 10.0,
+      children: _buildTiles(100),
+    );
   }
 }
 
 // GridView.count 的基础用法
 class GridViewCountDemo extends StatelessWidget {
-    List<Widget> _buildTiles(length) {
-    return List.generate(length, (index) { // 生成一个数组
+  List<Widget> _buildTiles(length) {
+    return List.generate(length, (index) {
+      // 生成一个数组
       return Container(
         color: Colors.grey[200],
         alignment: Alignment(0.0, 0.0),
