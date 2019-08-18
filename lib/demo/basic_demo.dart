@@ -12,7 +12,7 @@ class BasicDemo extends StatelessWidget {
         // repeat: ImageRepeat.repeat, //是否重复
         fit: BoxFit.cover,
         colorFilter: ColorFilter.mode(
-            Colors.indigoAccent[400].withOpacity(0.6), BlendMode.hardLight),
+            Colors.indigoAccent[400].withOpacity(0.6), BlendMode.hardLight), //滤镜效果
       )),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center, //主轴对齐
