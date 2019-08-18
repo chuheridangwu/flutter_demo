@@ -7,7 +7,7 @@ class ViewDemo extends StatelessWidget {
     return GridViewBuilderDemo();
   }
 }
-// GridView.builder 的基础用法
+// GridView.builder 的基础用法，必须设置gridDelegate，gridDelegate描述item大小、间距
 class GridViewBuilderDemo extends StatelessWidget {
 
 Widget _gridItemBuilder(BuildContext context,int index){
@@ -19,6 +19,7 @@ Widget _gridItemBuilder(BuildContext context,int index){
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      padding: EdgeInsets.all(8.0),
       itemCount: posts.length,
       itemBuilder: _gridItemBuilder,
       // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( //相当于count 设置间距
