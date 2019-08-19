@@ -79,6 +79,46 @@ class ButtonDemo extends StatelessWidget {
       ],
     );
 
+     // OutlineButton 带边框的按钮 
+    final Widget OutlineButtonDemo = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Theme(
+          data: Theme.of(context).copyWith( // 覆盖主题某几个特定的值
+            buttonColor: Theme.of(context).accentColor,
+            buttonTheme: ButtonThemeData(  // 重新创建button主题
+                textTheme: ButtonTextTheme.primary,
+                // shape: BeveledRectangleBorder( //改变主题形状
+                //   borderRadius: BorderRadius.circular(5.0),
+                // ),
+                shape: StadiumBorder(), // 椭圆形状
+            )
+          ),
+          child: OutlineButton(
+          child: Text('Buttom'),
+          onPressed: () {},
+          splashColor: Colors.grey,
+          textColor: Colors.black,
+          color: Theme.of(context).accentColor, // 背景颜色
+          // textTheme: ButtonTextTheme.primary, //主题
+          borderSide: BorderSide( //边框颜色
+            color: Colors.black,
+          ),
+        ),
+        ),
+        SizedBox(
+          width: 10.0,
+        ),
+        OutlineButton.icon(
+          icon: Icon(Icons.add),
+          label: Text('Buttom'),
+          onPressed: () {},
+          splashColor: Colors.grey,
+          textColor: Theme.of(context).accentColor,
+        ),
+      ],
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('ButtonDemo'),
@@ -90,6 +130,7 @@ class ButtonDemo extends StatelessWidget {
           children: <Widget>[
             flatButtonDemo,
             RaisedButtomDemo,
+            OutlineButtonDemo,
           ],
         ),
       ),
