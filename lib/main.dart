@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/demo/from_demo.dart';
 import 'package:flutter_demo/model/post.dart';
 import './demo/listview_demo.dart';
 import './demo/bottom_navigation_bar_demo.dart';
@@ -7,6 +8,8 @@ import './demo/layout_demo.dart';
 import './demo/view_demo.dart';
 import './demo/sliver_demo.dart';
 import './demo/navigator_demo.dart';
+import './demo/material_components.dart';
+import './demo/popup_menu_btn_demo.dart';
 
 void main() => runApp(App());
 
@@ -16,16 +19,21 @@ class App extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         // home: NavigatorDemo(),
-        initialRoute: '/',
+        initialRoute: '/mdc',
         routes: {
-          '/about': (context) => Page(title: 'About',),
-          '/' :(context) => Home(),
+          '/about': (context) => Page(
+                title: 'About',
+              ),
+          '/': (context) => Home(),
+          '/from': (context) => FromDemo(),
+          '/mdc': (context) => MaterialComponents(),
         },
         theme: ThemeData(
           // 主题
           primarySwatch: Colors.yellow,
           highlightColor: Color.fromRGBO(255, 255, 255, 0.5), //按钮点击高亮颜色
           splashColor: Colors.white60, // 水波纹颜色
+          accentColor: Color.fromRGBO(3, 54, 255, 1.0),
         ));
   }
 }
@@ -102,7 +110,9 @@ class Home extends StatelessWidget {
                   image: DecorationImage(
                     image: NetworkImage(posts[1].imageUrl),
                     fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(Colors.yellow[400].withOpacity(0.6), BlendMode.hardLight), //滤镜效果
+                    colorFilter: ColorFilter.mode(
+                        Colors.yellow[400].withOpacity(0.6),
+                        BlendMode.hardLight), //滤镜效果
                   ),
                 ),
               ),
