@@ -23,7 +23,6 @@ class MaterialComponents extends StatelessWidget {
 class ButtonDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     final Widget flatButtonDemo = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -41,6 +40,44 @@ class ButtonDemo extends StatelessWidget {
         ),
       ],
     );
+    
+    // RaisedButtom 有背景颜色、阴影、
+    final Widget RaisedButtomDemo = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Theme(
+          data: Theme.of(context).copyWith( // 覆盖主题某几个特定的值
+            buttonColor: Theme.of(context).accentColor,
+            buttonTheme: ButtonThemeData(  // 重新创建button主题
+                textTheme: ButtonTextTheme.primary,
+                // shape: BeveledRectangleBorder( //改变主题形状
+                //   borderRadius: BorderRadius.circular(5.0),
+                // ),
+                shape: StadiumBorder(), // 椭圆形状
+            )
+          ),
+          child: RaisedButton(
+          child: Text('Buttom'),
+          onPressed: () {},
+          splashColor: Colors.grey,
+          textColor: Colors.white,
+          color: Theme.of(context).accentColor, // 背景颜色
+          // textTheme: ButtonTextTheme.primary, //主题
+        ),
+        ),
+        SizedBox(
+          width: 10.0,
+        ),
+        RaisedButton.icon(
+          icon: Icon(Icons.add),
+          label: Text('Buttom'),
+          onPressed: () {},
+          splashColor: Colors.grey,
+          textColor: Theme.of(context).accentColor,
+          elevation: 12.0, //阴影高度
+        ),
+      ],
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -52,6 +89,7 @@ class ButtonDemo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             flatButtonDemo,
+            RaisedButtomDemo,
           ],
         ),
       ),
