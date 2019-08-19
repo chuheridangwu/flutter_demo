@@ -9,6 +9,7 @@ import './demo/view_demo.dart';
 import './demo/sliver_demo.dart';
 import './demo/navigator_demo.dart';
 import './demo/material_components.dart';
+import './demo/popup_menu_btn_demo.dart';
 
 void main() => runApp(App());
 
@@ -20,10 +21,12 @@ class App extends StatelessWidget {
         // home: NavigatorDemo(),
         initialRoute: '/mdc',
         routes: {
-          '/about': (context) => Page(title: 'About',),
-          '/' :(context) => Home(),
-          '/from' :(context) => FromDemo(),
-          '/mdc' :(context) => MaterialComponents(),
+          '/about': (context) => Page(
+                title: 'About',
+              ),
+          '/': (context) => Home(),
+          '/from': (context) => FromDemo(),
+          '/mdc': (context) => MaterialComponents(),
         },
         theme: ThemeData(
           // 主题
@@ -107,7 +110,9 @@ class Home extends StatelessWidget {
                   image: DecorationImage(
                     image: NetworkImage(posts[1].imageUrl),
                     fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(Colors.yellow[400].withOpacity(0.6), BlendMode.hardLight), //滤镜效果
+                    colorFilter: ColorFilter.mode(
+                        Colors.yellow[400].withOpacity(0.6),
+                        BlendMode.hardLight), //滤镜效果
                   ),
                 ),
               ),
