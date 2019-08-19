@@ -119,6 +119,20 @@ class ButtonDemo extends StatelessWidget {
       ],
     );
 
+    // 固定宽度的按钮
+    final Widget FixedWidthButton = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          width: 130.0,
+          child: OutlineButton(
+            onPressed: (){},
+            child: Text('Button'),
+          ),
+        )
+      ],
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('ButtonDemo'),
@@ -131,6 +145,7 @@ class ButtonDemo extends StatelessWidget {
             flatButtonDemo,
             RaisedButtomDemo,
             OutlineButtonDemo,
+            FixedWidthButton,
           ],
         ),
       ),
