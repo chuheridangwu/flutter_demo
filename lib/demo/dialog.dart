@@ -128,6 +128,42 @@ class _DialogDemoState extends State<DialogDemo> {
     });
   }
 
+  String _modelBottom = 'nothing';
+  _openModelBottomSheet() async {
+    final o = await showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 200,
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text('Option A'),
+                  onTap: () {
+                    Navigator.pop(context, 'A');
+                  },
+                ),
+                ListTile(
+                  title: Text('Option B'),
+                  onTap: () {
+                    Navigator.pop(context, 'B');
+                  },
+                ),
+                ListTile(
+                  title: Text('Option C'),
+                  onTap: () {
+                    Navigator.pop(context, 'C');
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+    setState(() {
+      _modelBottom = o;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,13 +181,17 @@ class _DialogDemoState extends State<DialogDemo> {
               child: Text('ShowAlertDialog ->$_simple'),
               onPressed: _openSimpleDialog,
             ),
-             FlatButton(
+            FlatButton(
               child: Text('ShowAlertDialog ->$_alert'),
               onPressed: _openAlertDialog,
             ),
             FlatButton(
               child: Text('showBottomSheet'),
               onPressed: _openBottomSheet,
+            ),
+            FlatButton(
+              child: Text('showModelBottomSheet ->$_modelBottom'),
+              onPressed: _openModelBottomSheet,
             ),
           ],
         ),
