@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'dart:async';
 
 class DateTimeDemo extends StatefulWidget {
   @override
@@ -7,16 +8,20 @@ class DateTimeDemo extends StatefulWidget {
 }
 
 class _DateTimeDemoState extends State<DateTimeDemo> {
-  final DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = DateTime.now();
 
-_selectedDate(){
-  showDatePicker(
-    context: context,
-    initialDate: selectedDate,
-    firstDate: DateTime(1990), //最早的日期
-    lastDate: DateTime(2100), //最晚的日期
-  );
-}
+  _selectedDate() async {
+    final DateTime date = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(1990), //最早的日期
+      lastDate: DateTime(2100), //最晚的日期
+    );
+    if (date == null) return;
+    setState(() {
+      selectedDate = date;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +38,15 @@ _selectedDate(){
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-               InkWell(
-                 onTap: _selectedDate,
-                 child: Row(
-                   children: <Widget>[
-                    Text(DateFormat.yMd().format(selectedDate)),
-                    Icon(Icons.arrow_drop_down),
-                   ],
-                 ),
-               ),
+                InkWell(
+                  onTap: _selectedDate,
+                  child: Row(
+                    children: <Widget>[
+                      Text(DateFormat.yMd().format(selectedDate)),
+                      Icon(Icons.arrow_drop_down),
+                    ],
+                  ),
+                ),
               ],
             ),
           ],
