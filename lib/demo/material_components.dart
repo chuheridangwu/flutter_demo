@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'button_demo.dart';
 import 'floating_action_button.dart';
 import 'popup_menu_btn_demo.dart';
+import 'from_demo.dart';
 
 class MaterialComponents extends StatelessWidget {
   @override
@@ -18,11 +19,13 @@ class MaterialComponents extends StatelessWidget {
               page: FloatingActionButtonDemo()),
           ListItem(title: 'Button', page: ButtonDemo()),
           ListItem(title: 'PopMenuButton', page: PopupMenuButtonDemo()),
+          ListItem(title: 'fromDemo', page: FromDemo()),
         ],
       ),
     );
   }
 }
+
 class _widgetDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

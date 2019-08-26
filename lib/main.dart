@@ -25,7 +25,6 @@ class App extends StatelessWidget {
                 title: 'About',
               ),
           '/': (context) => Home(),
-          '/from': (context) => FromDemo(),
           '/mdc': (context) => MaterialComponents(),
         },
         theme: ThemeData(
