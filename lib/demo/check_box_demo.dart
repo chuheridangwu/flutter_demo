@@ -29,7 +29,7 @@ class _CheckBoxDemoState extends State<CheckBoxDemo> {
               },
               value: _checkBoxItemA,
               selected: _checkBoxItemA, //是否有选中状态
-              secondary: Icon(Icons.add_alarm),
+              secondary: Icon(Icons.add_alarm), //设置一个图标
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
