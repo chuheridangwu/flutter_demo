@@ -7,6 +7,13 @@ class RadioDemo extends StatefulWidget {
 }
 
 class _RadioDemoState extends State<RadioDemo> {
+  int _radioGroupA = 0;
+  void _handleRadioValueChanged(int value) {
+    setState(() {
+      _radioGroupA = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +25,26 @@ class _RadioDemoState extends State<RadioDemo> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text('radioGroupA: $_radioGroupA'),
+            SizedBox(height: 12),
+            RadioListTile(
+              value: 0,
+              groupValue: _radioGroupA,
+              onChanged: _handleRadioValueChanged,
+              title: Text("RadioListTileItemA"),
+              subtitle: Text('Desc'),
+              selected: _radioGroupA == 0,
+              secondary: Icon(Icons.add_to_photos),
+            ),
+             RadioListTile(
+              value: 1,
+              groupValue: _radioGroupA,
+              onChanged: _handleRadioValueChanged,
+              title: Text("RadioListTileItemB"),
+              subtitle: Text('Desc'),
+              selected: _radioGroupA == 1,
+              secondary: Icon(Icons.alarm_off),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
