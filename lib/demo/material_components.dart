@@ -6,6 +6,7 @@ import 'from_demo.dart';
 import 'check_box_demo.dart';
 import 'radio_demo.dart';
 import 'switch_demo.dart';
+import 'slider_demo.dart';
 
 class MaterialComponents extends StatelessWidget {
   @override
@@ -26,6 +27,7 @@ class MaterialComponents extends StatelessWidget {
           ListItem(title: 'checkBox', page: CheckBoxDemo()),
           ListItem(title: 'radio', page: RadioDemo()),
           ListItem(title: 'switch', page: SwitchDemo()),
+          ListItem(title: 'slider', page: SliderDemo()),
         ],
       ),
     );
