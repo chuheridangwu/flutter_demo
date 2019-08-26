@@ -103,9 +103,35 @@ class _DialogDemoState extends State<DialogDemo> {
     }
   }
 
+// BottomSheet
+  final _bottomSheetKey = GlobalKey<ScaffoldState>();
+  _openBottomSheet() {
+    _bottomSheetKey.currentState.showBottomSheet((BuildContext context) {
+      return BottomAppBar(
+        child: Container(
+          height: 90.0,
+          width: double.infinity,
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.pause_circle_outline),
+              SizedBox(
+                width: 16.0,
+              ),
+              Text('1:30 / 03:30'),
+              Expanded(
+                child: Text('Fix-you - Coldplay'),
+              )
+            ],
+          ),
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _bottomSheetKey,
       appBar: AppBar(
         title: Text('DialogDemo'),
       ),
@@ -115,28 +141,17 @@ class _DialogDemoState extends State<DialogDemo> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            InkWell(
-              onTap: _openSimpleDialog,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'ShowSimpleDialog ->$_simple',
-                  )
-                ],
-              ),
+            FlatButton(
+              child: Text('ShowAlertDialog ->$_simple'),
+              onPressed: _openSimpleDialog,
             ),
-            SizedBox(
-              height: 20.0,
+             FlatButton(
+              child: Text('ShowAlertDialog ->$_alert'),
+              onPressed: _openAlertDialog,
             ),
-            InkWell(
-              onTap: _openAlertDialog,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text('ShowAlertDialog ->$_alert'),
-                ],
-              ),
+            FlatButton(
+              child: Text('showBottomSheet'),
+              onPressed: _openBottomSheet,
             ),
           ],
         ),
