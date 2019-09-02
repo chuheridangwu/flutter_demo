@@ -23,25 +23,26 @@ class _SliderDemoState extends State<SliderDemo> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-               Slider(
-                 value: _sliderValue,
-                 onChanged: (value){
-                   setState(() {
-                     _sliderValue = value;
-                   });
-                 },
-                 min: 0.0,
-                 max: 10.0,
-                 divisions: 10,
-                 label: '${_sliderValue.toInt()}',
-                 activeColor: Theme.of(context).accentColor,
-                 inactiveColor: Theme.of(context).accentColor.withOpacity(0.3),
-               )
+                Slider(
+                  value: _sliderValue,
+                  onChanged: (value) {
+                    setState(() {
+                      _sliderValue = value;
+                    });
+                  },
+                  min: 0.0,
+                  max: 10.0,
+                  divisions: 10,
+                  label: '${_sliderValue.toInt()}',
+                  activeColor: Theme.of(context).accentColor,
+                  inactiveColor: Theme.of(context).accentColor.withOpacity(0.3),
+                )
               ],
             ),
           ],
         ),
       ),
-    );;
+    );
+    ;
   }
 }

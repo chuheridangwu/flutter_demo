@@ -164,6 +164,19 @@ class _DialogDemoState extends State<DialogDemo> {
     });
   }
 
+  _openSnackBarBotton() {
+    print('object');
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text('Processing....'),
+      action: SnackBarAction(
+        label: 'OK',
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,6 +205,10 @@ class _DialogDemoState extends State<DialogDemo> {
             FlatButton(
               child: Text('showModelBottomSheet ->$_modelBottom'),
               onPressed: _openModelBottomSheet,
+            ),
+            FlatButton(
+              child: Text('showSnackBarBotton'),
+              onPressed: _openSnackBarBotton,
             ),
           ],
         ),
