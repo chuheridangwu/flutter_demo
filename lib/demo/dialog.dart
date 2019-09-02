@@ -164,6 +164,7 @@ class _DialogDemoState extends State<DialogDemo> {
     });
   }
 
+// SnackBar
   _openSnackBarBotton() {
     print('object');
     Scaffold.of(context).showSnackBar(SnackBar(
@@ -175,6 +176,67 @@ class _DialogDemoState extends State<DialogDemo> {
         },
       ),
     ));
+  }
+
+  List<ExpansionPanelItem> _expansionPanelItems;
+
+  Widget _openExpansionPanel() {
+    print("_openExpansionPanel");
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _expansionPanelItems[index].isExpanded = !isExpanded;
+        });
+      },
+      children: _expansionPanelItems.map((item){
+        return ExpansionPanel(
+            isExpanded: item.isExpanded,
+            body: item.body,
+            headerBuilder: (BuildContext context, isExpanded){
+              return Container(
+                padding: EdgeInsets.all(16.0),
+                child: Text('${item.headerText}'),
+              );
+            }
+
+        );
+      }).toList(),
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _expansionPanelItems = <ExpansionPanelItem>[
+      ExpansionPanelItem(
+        headerText: 'Panel A',
+        body: Container(
+          padding: EdgeInsets.all(16.0),
+          width: double.infinity,
+          child: Text('Content for A'),
+        ),
+        isExpanded: false,
+      ),
+       ExpansionPanelItem(
+        headerText: 'Panel B',
+        body: Container(
+          padding: EdgeInsets.all(16.0),
+          width: double.infinity,
+          child: Text('Content for B'),
+        ),
+        isExpanded: false,
+      ),
+      ExpansionPanelItem(
+        headerText: 'Panel C',
+        body: Container(
+          padding: EdgeInsets.all(16.0),
+          width: double.infinity,
+          child: Text('Content for C'),
+        ),
+        isExpanded: false,
+      ),
+    ];
   }
 
   @override
@@ -210,9 +272,21 @@ class _DialogDemoState extends State<DialogDemo> {
               child: Text('showSnackBarBotton'),
               onPressed: _openSnackBarBotton,
             ),
+            _openExpansionPanel(),
           ],
         ),
       ),
     );
   }
+}
+
+class ExpansionPanelItem {
+  String headerText;
+  Widget body;
+  bool isExpanded;
+  ExpansionPanelItem({
+    this.body,
+    this.headerText,
+    this.isExpanded,
+  });
 }
