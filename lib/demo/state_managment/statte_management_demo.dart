@@ -8,7 +8,7 @@ class StateManagementDemo extends StatefulWidget {
 class _StateManagementDemoState extends State<StateManagementDemo> {
   int _count = 0;
 
-  void _increaseCount(){
+  void _increaseCount() {
     setState(() {
       _count += 1;
     });
@@ -21,11 +21,24 @@ class _StateManagementDemoState extends State<StateManagementDemo> {
         title: Text('StateManagementDemo'),
         elevation: 0.0,
       ),
-      body: Counter(_count,_increaseCount),
+      body: CounterWrapper(_count, _increaseCount),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed:_increaseCount,
+        onPressed: _increaseCount,
       ),
+    );
+  }
+}
+
+class CounterWrapper extends StatelessWidget {
+  final int count;
+  final VoidCallback increaseCount; // 回调
+  CounterWrapper(this.count, this.increaseCount); //构造函数
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Counter(count, increaseCount),
     );
   }
 }
@@ -33,15 +46,14 @@ class _StateManagementDemoState extends State<StateManagementDemo> {
 // 子类，传递数据
 class Counter extends StatelessWidget {
   final int count;
-  final VoidCallback  increaseCount; // 回调
-  Counter(this.count,this.increaseCount);
+  final VoidCallback increaseCount; // 回调
+  Counter(this.count, this.increaseCount); //构造函数
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: ActionChip(
-          label: Text('$count'),
-          onPressed: increaseCount,
-        ),
-      );
+    return ActionChip(
+        label: Text('$count'),
+        onPressed: increaseCount,
+    );
   }
 }
