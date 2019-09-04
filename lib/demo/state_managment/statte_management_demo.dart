@@ -16,44 +16,60 @@ class _StateManagementDemoState extends State<StateManagementDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('StateManagementDemo'),
-        elevation: 0.0,
-      ),
-      body: CounterWrapper(_count, _increaseCount),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: _increaseCount,
-      ),
-    );
+    return CounterProvider(
+        count: _count,
+        increateCount: _increaseCount,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('StateManagementDemo'),
+            elevation: 0.0,
+          ),
+          body: CounterWrapper(),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: _increaseCount,
+          ),
+        ));
   }
 }
 
 class CounterWrapper extends StatelessWidget {
-  final int count;
-  final VoidCallback increaseCount; // 回调
-  CounterWrapper(this.count, this.increaseCount); //构造函数
-
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Counter(count, increaseCount),
+      child: Counter(),
     );
   }
 }
 
 // 子类，传递数据
 class Counter extends StatelessWidget {
-  final int count;
-  final VoidCallback increaseCount; // 回调
-  Counter(this.count, this.increaseCount); //构造函数
-
   @override
   Widget build(BuildContext context) {
+    final int count = CounterProvider.of(context).count;
+    final VoidCallback increaseCount = CounterProvider.of(context).increateCount;
     return ActionChip(
-        label: Text('$count'),
-        onPressed: increaseCount,
+      label: Text('$count'),
+      onPressed: increaseCount,
     );
+  }
+}
+
+// 传递数据的类
+class CounterProvider extends InheritedWidget {
+  final int count;
+  final VoidCallback increateCount;
+  final Widget child;
+
+  CounterProvider({this.child, this.count, this.increateCount})
+      : super(child: child); //构造函数
+  // 获取数据
+  static CounterProvider of(BuildContext context) =>
+      context.inheritFromWidgetOfExactType(CounterProvider);
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) {
+    //是否通知继承了这个小部件树的子部件
+    return true;
   }
 }
