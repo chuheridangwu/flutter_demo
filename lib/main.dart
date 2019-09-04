@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/demo/from_demo.dart';
+import 'package:flutter_demo/demo/state_managment/statte_management_demo.dart';
 import 'package:flutter_demo/model/post.dart';
 import './demo/listview_demo.dart';
 import './demo/bottom_navigation_bar_demo.dart';
@@ -10,6 +11,7 @@ import './demo/sliver_demo.dart';
 import './demo/navigator_demo.dart';
 import './demo/material_components.dart';
 import './demo/popup_menu_btn_demo.dart';
+import './demo/state_managment/statte_management_demo.dart';
 
 void main() => runApp(App());
 
@@ -20,13 +22,14 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         // showSemanticsDebugger: true,
         // home: NavigatorDemo(),
-        initialRoute: '/mdc',
+        initialRoute: '/state_management',
         routes: {
           '/about': (context) => Page(
                 title: 'About',
               ),
           '/': (context) => Home(),
           '/mdc': (context) => MaterialComponents(),
+          '/state_management':(context) => StateManagementDemo(),
         },
         theme: ThemeData(
           // 主题
