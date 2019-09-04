@@ -14,50 +14,57 @@ class _CardDemoState extends State<CardDemo> {
         title: Text('CardDemo'),
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
-        child: ListView(
-          children: posts.map((post){
-            return Card(
-              child: Column(
-                children: <Widget>[
-                  AspectRatio(
-                    aspectRatio: 16/9,
-                    child: Image.network(
-                      post.imageUrl,
-                      fit: BoxFit.cover,
+          padding: EdgeInsets.all(16.0),
+          child: ListView(
+            children: posts.map((post) {
+              return Card(
+                child: Column(
+                  children: <Widget>[
+                    AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(4.0),
+                            topRight: Radius.circular(4.0)),
+                        child: Image.network(
+                          post.imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(post.imageUrl),
+                    ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(post.imageUrl),
+                      ),
+                      title: Text(post.title),
+                      subtitle: Text(post.author),
                     ),
-                    title: Text(post.title),
-                    subtitle: Text(post.author),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(post.description,maxLines: 2,),
-                  ),
-                  ButtonTheme.bar(
-                    child: ButtonBar(
-                     children: <Widget>[
-                       FlatButton(
-                        child: Text('like'.toUpperCase()),
-                        onPressed: (){},
-                       ),
-                       FlatButton(
-                        child: Text('read'.toUpperCase()),
-                        onPressed: (){},
-                       ),
-                     ],
+                    Container(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                        post.description,
+                        maxLines: 2,
+                      ),
                     ),
-                  )
-                ],
-              ),
-            );
-          }).toList(),
-        )
-      ),
+                    ButtonTheme.bar(
+                      child: ButtonBar(
+                        children: <Widget>[
+                          FlatButton(
+                            child: Text('like'.toUpperCase()),
+                            onPressed: () {},
+                          ),
+                          FlatButton(
+                            child: Text('read'.toUpperCase()),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              );
+            }).toList(),
+          )),
     );
   }
 }

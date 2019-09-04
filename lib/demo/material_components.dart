@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/demo/card_demo.dart';
 import 'package:flutter_demo/demo/chip_demo.dart';
 import 'package:flutter_demo/demo/datatable_demo.dart';
+import 'package:flutter_demo/demo/stepper_demo.dart';
 import 'button_demo.dart';
 import 'floating_action_button.dart';
 import 'popup_menu_btn_demo.dart';
@@ -27,6 +28,7 @@ class MaterialComponents extends StatelessWidget {
               title: 'PaginatedDataTableDemo', page: PaginatedDataTableDemo()),
           ListItem(title: 'ChipDemo', page: ChipDemo()),
           ListItem(title: 'CardDemo', page: CardDemo()),
+           ListItem(title: 'StepperDemo', page: StepperDemo()),
           ListItem(title: 'DataTableDemo', page: DataTableDemo()),
           ListItem(
               title: 'FloatingActionButtonDemo',
