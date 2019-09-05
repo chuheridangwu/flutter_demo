@@ -21,17 +21,29 @@ class StreamDemoHome extends StatefulWidget {
 
 class _StreamDemoHomeState extends State<StreamDemoHome> {
   StreamSubscription _streamDemoSubscription;
+
+  StreamController<String> _streamDemo;
+
+  @override
+  void dispose() {
+    _streamDemo.close();
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
     print('Create a stream');
     // 创建一个Stream
-    Stream<String> _streamDemo = Stream.fromFuture(fetchData());
+    // Stream<String> _streamDemo = Stream.fromFuture(fetchData());
+
+    // 创建一个StreamController
+    _streamDemo = StreamController<String>();
 
     print('Start listening on a stream');
     // 监听Stream
     _streamDemoSubscription =
-        _streamDemo.listen(onData, onDone: onDone, onError: onError);
+        _streamDemo.stream.listen(onData, onDone: onDone, onError: onError);
 
     print('Initialize completed.');
   }
@@ -63,13 +75,19 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
   }
 
   void _resumeStream() {
-     print('Resume subscription');
+    print('Resume subscription');
     _streamDemoSubscription.resume();
   }
 
   void _cancemStream() {
-     print('Cancel subscription');
+    print('Cancel subscription');
     _streamDemoSubscription.cancel();
+  }
+
+  void _addDataToStream() async {
+    print('add data to Stream');
+    String data = await fetchData();
+    _streamDemo.add(data);
   }
 
   @override
@@ -77,7 +95,13 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
     return Container(
       child: Center(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            FlatButton(
+              child: Text('addStream'),
+              onPressed: _addDataToStream,
+            ),
             FlatButton(
               child: Text('Pause'),
               onPressed: _pauseStream,
