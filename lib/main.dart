@@ -10,6 +10,7 @@ import './demo/sliver_demo.dart';
 import './demo/navigator_demo.dart';
 import './demo/material_components.dart';
 import './demo/popup_menu_btn_demo.dart';
+import './demo/stream/stream_demo.dart';
 
 void main() => runApp(App());
 
@@ -19,7 +20,7 @@ class App extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         // home: NavigatorDemo(),
-        initialRoute: '/mdc',
+        initialRoute: '/stream',
         routes: {
           '/about': (context) => Page(
                 title: 'About',
@@ -27,6 +28,7 @@ class App extends StatelessWidget {
           '/': (context) => Home(),
           '/from': (context) => FromDemo(),
           '/mdc': (context) => MaterialComponents(),
+          '/stream': (context) => StreamDemo(),
         },
         theme: ThemeData(
           // 主题
