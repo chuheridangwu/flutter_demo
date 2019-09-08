@@ -30,7 +30,7 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
   @override
   void initState() {
     super.initState();
-    fetchPost().then((value) => print(value));
+    // fetchPost().then((value) => print(value));
   }
 
   Future<List<Post>> fetchPost() async {
@@ -49,7 +49,29 @@ class _HttpDemoHomeState extends State<HttpDemoHome> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return FutureBuilder(
+      future: fetchPost(),
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        print('snapshot.data: ${snapshot.data}');
+        print('snapshot.connectionState: ${snapshot.connectionState}');
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: Text('Loading....')
+          );
+        }
+        return ListView(
+          children: snapshot.data.map<Widget>((item){
+            return ListTile(
+              title: Text(item.title),
+              subtitle: Text(item.author),
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(item.img),
+              ),
+            );
+          }).toList(),
+        );
+      },
+    );
   }
 }
 
@@ -65,7 +87,7 @@ class Post {
   Post.fromJson(Map json)
       : title = json['title'],
         desc = json['description'],
-        img = json['imgUrl'],
+        img = json['imageUrl'],
         id = json['id'],
         author = json['author'];
 }
