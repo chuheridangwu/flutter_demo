@@ -40,10 +40,10 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome>
     _animationColor = Tween(begin: Colors.red,end: Colors.black).animate(_curvedAnimation);
 
 
-    _animationControllerDemo.addListener(() {
-      // print('${_animationControllerDemo.value}');
-      setState(() {});
-    }); // 监听动画变化
+    // _animationControllerDemo.addListener(() {
+    //   // print('${_animationControllerDemo.value}');
+    //   setState(() {});
+    // }); // 监听动画变化
 
     _animationControllerDemo.addStatusListener((AnimationStatus status){
       print(status);
@@ -69,23 +69,38 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome>
               _animationControllerDemo.forward();
             },
           ),
-          IconButton(
-            icon: Icon(Icons.favorite),
-            iconSize: _animation.value,
-            color: _animationColor.value,
-            onPressed: (){
-              switch (_animationControllerDemo.status) {
-                case AnimationStatus.completed:
-                  _animationControllerDemo.reverse();
-                  break;
-                default:
-                _animationControllerDemo.forward();
-              }
-            },
-          )
+         AnimatedHeart(animations: [_animation,_animationColor], controller: _animationControllerDemo,),
         ],
       ),
     );
+  }
+}
+
+class AnimatedHeart extends AnimatedWidget{
+ final List animations;
+ final AnimationController controller;
+
+ AnimatedHeart({
+   this.animations,
+   this.controller,
+ }) : super(listenable: controller);
+
+ @override
+  Widget build(BuildContext context) {
+    return  IconButton(
+            icon: Icon(Icons.favorite),
+            iconSize: animations[0].value,
+            // color: animations[1].value, // 不知道为什么会崩溃
+            onPressed: (){
+              switch (controller.status) {
+                case AnimationStatus.completed:
+                  controller.reverse();
+                  break;
+                default:
+                controller.forward();
+              }
+            },
+          );
   }
 }
 
