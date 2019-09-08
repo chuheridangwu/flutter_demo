@@ -22,6 +22,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome>
   AnimationController _animationControllerDemo;
   Animation _animation;
   Animation _animationColor;
+  CurvedAnimation _curvedAnimation;
 
   @override
   void initState() {
@@ -34,9 +35,10 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome>
         vsync: this //防止屏幕外的效果消耗资源
         );
 
+    _curvedAnimation = CurvedAnimation(parent: _animationControllerDemo,curve: Curves.bounceOut);
+    _animation = Tween(begin: 32.0,end: 100.0).animate(_curvedAnimation);
+    _animationColor = Tween(begin: Colors.red,end: Colors.black).animate(_curvedAnimation);
 
-    _animation = Tween(begin: 32.0,end: 100.0).animate(_animationControllerDemo);
-    _animationColor = Tween(begin: Colors.red,end: Colors.black).animate(_animationControllerDemo);
 
     _animationControllerDemo.addListener(() {
       // print('${_animationControllerDemo.value}');
