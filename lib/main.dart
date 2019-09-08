@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/demo/bloc/bloc_demo.dart';
 import 'package:flutter_demo/demo/from_demo.dart';
 import 'package:flutter_demo/demo/rxdart/rxdart_demo.dart';
 import 'package:flutter_demo/model/post.dart';
@@ -13,6 +14,7 @@ import './demo/material_components.dart';
 import './demo/popup_menu_btn_demo.dart';
 import './demo/stream/stream_demo.dart';
 import './demo/rxdart/rxdart_demo.dart';
+import './demo/bloc/bloc_demo.dart';
 
 void main() => runApp(App());
 
@@ -22,7 +24,7 @@ class App extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         // home: NavigatorDemo(),
-        initialRoute: '/rxdart',
+        initialRoute: '/bloc',
         routes: {
           '/about': (context) => Page(
                 title: 'About',
@@ -31,7 +33,8 @@ class App extends StatelessWidget {
           '/from': (context) => FromDemo(),
           '/mdc': (context) => MaterialComponents(),
           '/stream': (context) => StreamDemo(),
-           '/rxdart': (context) => RxDartdemo(),
+          '/rxdart': (context) => RxDartdemo(),
+          '/bloc': (context) => BlocDemo(),
         },
         theme: ThemeData(
           // 主题
