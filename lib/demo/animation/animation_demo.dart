@@ -26,15 +26,20 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome>
     super.initState();
     _animationControllerDemo = AnimationController(
         value: 32.0, //初始值
-        lowerBound: 0.0, // 最小的值
+        lowerBound: 32.0, // 最小的值
         upperBound: 100.0, //最大的值
         duration: Duration(milliseconds: 3000),
         vsync: this //防止屏幕外的效果消耗资源
         );
     _animationControllerDemo.addListener(() {
-      print('${_animationControllerDemo.value}');
+      // print('${_animationControllerDemo.value}');
       setState(() {});
     }); // 监听动画变化
+
+    _animationControllerDemo.addStatusListener((AnimationStatus status){
+      print(status);
+    });
+
     // _animationControllerDemo.forward(); //开始播放动画
   }
 
@@ -47,11 +52,28 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome>
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ActionChip(
-        label: Text('${_animationControllerDemo.value}'),
-        onPressed: () {
-          _animationControllerDemo.forward();
-        },
+      child: Column(
+        children: <Widget>[
+          ActionChip(
+            label: Text('${_animationControllerDemo.value}'),
+            onPressed: () {
+              _animationControllerDemo.forward();
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.favorite),
+            iconSize: _animationControllerDemo.value,
+            onPressed: (){
+              switch (_animationControllerDemo.status) {
+                case AnimationStatus.completed:
+                  _animationControllerDemo.reverse();
+                  break;
+                default:
+                _animationControllerDemo.forward();
+              }
+            },
+          )
+        ],
       ),
     );
   }
