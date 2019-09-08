@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/demo/from_demo.dart';
+import 'package:flutter_demo/demo/rxdart/rxdart_demo.dart';
 import 'package:flutter_demo/model/post.dart';
 import './demo/listview_demo.dart';
 import './demo/bottom_navigation_bar_demo.dart';
@@ -11,6 +12,7 @@ import './demo/navigator_demo.dart';
 import './demo/material_components.dart';
 import './demo/popup_menu_btn_demo.dart';
 import './demo/stream/stream_demo.dart';
+import './demo/rxdart/rxdart_demo.dart';
 
 void main() => runApp(App());
 
@@ -20,7 +22,7 @@ class App extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         // home: NavigatorDemo(),
-        initialRoute: '/stream',
+        initialRoute: '/rxdart',
         routes: {
           '/about': (context) => Page(
                 title: 'About',
@@ -29,6 +31,7 @@ class App extends StatelessWidget {
           '/from': (context) => FromDemo(),
           '/mdc': (context) => MaterialComponents(),
           '/stream': (context) => StreamDemo(),
+           '/rxdart': (context) => RxDartdemo(),
         },
         theme: ThemeData(
           // 主题
