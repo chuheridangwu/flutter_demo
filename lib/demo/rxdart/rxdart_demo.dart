@@ -31,7 +31,10 @@ class _RxDartDemoHomeState extends State<RxDartDemoHome> {
   void initState() {
     super.initState();
     _textFieldSubject = PublishSubject<String>();
-    _textFieldSubject.map((item) => 'item:$item').listen((data) => print(data));
+    _textFieldSubject
+    // .map((item) => 'item: $item')
+    .where((item) => item.length > 9)
+    .listen((data) => print(data));
     // Observable<String> _observable =
     // Observable(Stream.fromIterable(['hello','你好']));
     // Observable.fromFuture(Future.value('hello~'));
@@ -67,7 +70,7 @@ class _RxDartDemoHomeState extends State<RxDartDemoHome> {
       ),
       child: TextField(
         onChanged: (value) {
-          _textFieldSubject.add('input: $value');
+          _textFieldSubject.add(' $value');
         },
         onSubmitted: (value) {
           _textFieldSubject.add('submit: $value');
