@@ -15,6 +15,7 @@ import './demo/popup_menu_btn_demo.dart';
 import './demo/stream/stream_demo.dart';
 import './demo/rxdart/rxdart_demo.dart';
 import './demo/bloc/bloc_demo.dart';
+import './demo/http/http_demo.dart';
 
 void main() => runApp(App());
 
@@ -24,7 +25,7 @@ class App extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         // home: NavigatorDemo(),
-        initialRoute: '/bloc',
+        initialRoute: '/http',
         routes: {
           '/about': (context) => Page(
                 title: 'About',
@@ -35,6 +36,7 @@ class App extends StatelessWidget {
           '/stream': (context) => StreamDemo(),
           '/rxdart': (context) => RxDartdemo(),
           '/bloc': (context) => BlocDemo(),
+          '/http': (context) => HttpDemo(),
         },
         theme: ThemeData(
           // 主题
