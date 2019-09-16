@@ -29,7 +29,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       // locale: Locale('en','US'), //默认配置
       localeResolutionCallback: (Locale local,Iterable<Locale> supportedLocal){
-        return Locale('en','US');
+        return Locale('zh','CN');
       },
       localizationsDelegates: [
         LocalizationsDemoDelegate(),
