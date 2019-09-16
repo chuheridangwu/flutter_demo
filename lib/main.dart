@@ -15,6 +15,11 @@ import './demo/popup_menu_btn_demo.dart';
 import './demo/stream/stream_demo.dart';
 import './demo/rxdart/rxdart_demo.dart';
 import './demo/bloc/bloc_demo.dart';
+import './demo/http/http_demo.dart';
+import './demo/animation/animation_demo.dart';
+import './demo/i18n/i18n_demo.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import './demo/i18n/map/localization_demo.dart';
 
 void main() => runApp(App());
 
@@ -22,9 +27,22 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // locale: Locale('en','US'), //默认配置
+      localeResolutionCallback: (Locale local,Iterable<Locale> supportedLocal){
+        return Locale('zh','CN');
+      },
+      localizationsDelegates: [
+        LocalizationsDemoDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [ //支持的语言
+          Locale('en','US'),
+          Locale('zh','CN')
+      ],
         debugShowCheckedModeBanner: false,
         // home: NavigatorDemo(),
-        initialRoute: '/bloc',
+        initialRoute: '/i18n',
         routes: {
           '/about': (context) => Page(
                 title: 'About',
@@ -35,6 +53,9 @@ class App extends StatelessWidget {
           '/stream': (context) => StreamDemo(),
           '/rxdart': (context) => RxDartdemo(),
           '/bloc': (context) => BlocDemo(),
+          '/http': (context) => HttpDemo(),
+          '/animation': (context) => AnimationDemo(),
+          '/i18n': (context) => I18nDemo(),
         },
         theme: ThemeData(
           // 主题
