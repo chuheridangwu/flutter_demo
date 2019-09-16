@@ -17,6 +17,7 @@ import './demo/rxdart/rxdart_demo.dart';
 import './demo/bloc/bloc_demo.dart';
 import './demo/http/http_demo.dart';
 import './demo/animation/animation_demo.dart';
+import './demo/i18n/i18n_demo.dart';
 
 void main() => runApp(App());
 
@@ -26,7 +27,7 @@ class App extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         // home: NavigatorDemo(),
-        initialRoute: '/animation',
+        initialRoute: '/i18n',
         routes: {
           '/about': (context) => Page(
                 title: 'About',
@@ -39,6 +40,7 @@ class App extends StatelessWidget {
           '/bloc': (context) => BlocDemo(),
           '/http': (context) => HttpDemo(),
           '/animation': (context) => AnimationDemo(),
+          '/i18n': (context) => I18nDemo(),
         },
         theme: ThemeData(
           // 主题
