@@ -18,8 +18,8 @@ class _TestDemoState extends State<TestDemo> {
 }
 
 // 单元格测试
-class UnittestingDemo{
-  static greet(String name){
+class UnittestingDemo {
+  static greet(String name) {
     return 'hello $name';
   }
 }
@@ -31,10 +31,23 @@ class TestDemoHome extends StatefulWidget {
 }
 
 class _TestDemoHomeState extends State<TestDemoHome> {
+  int _count = 0;
   @override
   Widget build(BuildContext context) {
-    return Chip(
-      label: Text('Hello'),
+    return Row(
+      children: <Widget>[
+        Chip(
+          label: Text('Hello'),
+        ),
+        ActionChip(
+          label: Text('$_count'),
+          onPressed: () {
+            setState(() {
+              _count++;
+            });
+          },
+        )
+      ],
     );
   }
 }
