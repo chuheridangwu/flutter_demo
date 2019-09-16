@@ -18,6 +18,7 @@ import './demo/bloc/bloc_demo.dart';
 import './demo/http/http_demo.dart';
 import './demo/animation/animation_demo.dart';
 import './demo/i18n/i18n_demo.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(App());
 
@@ -25,6 +26,18 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // locale: Locale('en','US'), //默认配置
+      localeResolutionCallback: (local,supportedLocal){
+        return Locale('en','US');
+      },
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [ //支持的语言
+          Locale('en','US'),
+          Locale('zh','CN')
+      ],
         debugShowCheckedModeBanner: false,
         // home: NavigatorDemo(),
         initialRoute: '/i18n',
