@@ -19,6 +19,7 @@ import './demo/http/http_demo.dart';
 import './demo/animation/animation_demo.dart';
 import './demo/i18n/i18n_demo.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import './demo/i18n/map/localization_demo.dart';
 
 void main() => runApp(App());
 
@@ -27,10 +28,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // locale: Locale('en','US'), //默认配置
-      localeResolutionCallback: (local,supportedLocal){
+      localeResolutionCallback: (Locale local,Iterable<Locale> supportedLocal){
         return Locale('en','US');
       },
       localizationsDelegates: [
+        LocalizationsDemoDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
