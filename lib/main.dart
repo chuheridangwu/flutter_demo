@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/demo/bloc/bloc_demo.dart';
 import 'package:flutter_demo/demo/from_demo.dart';
+import 'package:flutter_demo/demo/state_managment/statte_management_demo.dart';
 import 'package:flutter_demo/demo/rxdart/rxdart_demo.dart';
 import 'package:flutter_demo/model/post.dart';
 import './demo/listview_demo.dart';
@@ -12,6 +13,7 @@ import './demo/sliver_demo.dart';
 import './demo/navigator_demo.dart';
 import './demo/material_components.dart';
 import './demo/popup_menu_btn_demo.dart';
+import './demo/state_managment/statte_management_demo.dart';
 import './demo/stream/stream_demo.dart';
 import './demo/rxdart/rxdart_demo.dart';
 import './demo/bloc/bloc_demo.dart';
@@ -20,6 +22,7 @@ import './demo/animation/animation_demo.dart';
 import './demo/i18n/i18n_demo.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import './demo/i18n/map/localization_demo.dart';
+
 
 void main() => runApp(App());
 
@@ -41,6 +44,7 @@ class App extends StatelessWidget {
           Locale('zh','CN')
       ],
         debugShowCheckedModeBanner: false,
+        // showSemanticsDebugger: true,
         // home: NavigatorDemo(),
         initialRoute: '/i18n',
         routes: {
@@ -48,8 +52,8 @@ class App extends StatelessWidget {
                 title: 'About',
               ),
           '/': (context) => Home(),
-          '/from': (context) => FromDemo(),
           '/mdc': (context) => MaterialComponents(),
+          '/state_management':(context) => StateManagementDemo(),
           '/stream': (context) => StreamDemo(),
           '/rxdart': (context) => RxDartdemo(),
           '/bloc': (context) => BlocDemo(),
